@@ -10,7 +10,7 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long accountId;
+    private Long id;
     private Long customer_id;
     private AccountType accountType;
     private double amount = 0;
@@ -25,6 +25,7 @@ public class Account {
         this.amount = amount;
         this.approved = approved;
     }
+
 
     public AccountType getAccountType() {
         return accountType;
@@ -50,12 +51,12 @@ public class Account {
         this.amount = amount;
     }
 
-    public Long getAccountId() {
-        return accountId;
+    public Long getId() {
+        return id;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public boolean isApproved() {
