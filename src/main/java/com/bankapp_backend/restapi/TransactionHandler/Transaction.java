@@ -75,4 +75,6 @@ public class Transaction {
     public void setSenderAccountType(Account.AccountType senderAccountType) {
         this.senderAccountType = senderAccountType;
     }
+
+
 }

@@ -1,0 +1,98 @@
+package com.bankapp_backend.restapi;
+
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
+public class Bill {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
+    Long payerId;
+    Long billCollectorId;
+    String billCollectorEmail;
+    @Temporal(TemporalType.DATE)
+    Date scheduledDate;
+    double value;
+    boolean active;
+    boolean isPaid;
+    boolean autoPay;
+
+
+    public Bill() {
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getScheduledDate() {
+        return scheduledDate;
+    }
+
+    public void setScheduledDate(Date scheduledDate) {
+        this.scheduledDate = scheduledDate;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public Long getPayerId() {
+        return payerId;
+    }
+
+    public void setPayerId(Long payerId) {
+        this.payerId = payerId;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Long getBillCollectorId() {
+        return billCollectorId;
+    }
+
+    public void setBillCollectorId(Long billCollectorId) {
+        this.billCollectorId = billCollectorId;
+    }
+
+    public String getBillCollectorEmail() {
+        return billCollectorEmail;
+    }
+
+    public void setBillCollectorEmail(String billCollectorEmail) {
+        this.billCollectorEmail = billCollectorEmail;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(boolean paid) {
+        isPaid = paid;
+    }
+
+    public boolean isAutoPay() {
+        return autoPay;
+    }
+
+    public void setAutoPay(boolean autoPay) {
+        this.autoPay = autoPay;
+    }
+}

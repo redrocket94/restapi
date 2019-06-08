@@ -1,12 +1,13 @@
 package com.bankapp_backend.restapi.CustomerHandler;
 
 import com.bankapp_backend.restapi.AccountHandler.Account;
+import com.bankapp_backend.restapi.Bill;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.*;
 import java.util.List;
 
-@JsonPropertyOrder({"customerId", "username", "password", "email", "firstName", "lastName", "age", "bank"})
+@JsonPropertyOrder({"customerId", "username", "password", "email", "firstName", "lastName", "age", "bank", "accounts", "bills"})
 @Entity
 public class Customer {
 
@@ -20,16 +21,20 @@ public class Customer {
     private String password;
     private String email;
     private bank bank;
+
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private List<Account> accounts;
+
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "payerId", referencedColumnName = "id")
+    private List<Bill> bills;
 
 
     public Customer() {
     }
 
-    public Customer(Long id, String firstName, String lastName, int age, String username, String password, String email, bank bank) {
-        this.id = id;
+    public Customer(String firstName, String lastName, int age, String username, String password, String email, Customer.bank bank, List<Account> accounts, List<Bill> bills) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -37,6 +42,8 @@ public class Customer {
         this.password = password;
         this.email = email;
         this.bank = bank;
+        this.accounts = accounts;
+        this.bills = bills;
     }
 
     public Customer.bank getBank() {
@@ -118,5 +125,13 @@ public class Customer {
     enum bank {
         COPENHAGEN,
         ODENSE
+    }
+
+    public List<Bill> getBills() {
+        return bills;
+    }
+
+    public void setBills(List<Bill> bills) {
+        this.bills = bills;
     }
 }
