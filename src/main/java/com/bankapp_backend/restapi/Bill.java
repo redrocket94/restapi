@@ -1,14 +1,18 @@
 package com.bankapp_backend.restapi;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import javax.persistence.*;
 import java.util.Date;
+
+@JsonPropertyOrder({"id", "payerId", "billCollectorId", "billCollectorEmail", "scheduledDate", "value", "active", "isPaid", "autoPay"})
 
 @Entity
 public class Bill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    Long billId;
     Long payerId;
     Long billCollectorId;
     String billCollectorEmail;
@@ -23,13 +27,16 @@ public class Bill {
     public Bill() {
     }
 
-
     public Long getId() {
-        return id;
+        return billId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getBillId() {
+        return billId;
+    }
+
+    public void setBillId(Long billId) {
+        this.billId = billId;
     }
 
     public Date getScheduledDate() {
